@@ -82,7 +82,7 @@ class KIFindInputNode:
 
     # ------------------------------------------------------------------
     # Resolve the full path (Comfy root + folder)
-    def _find_root_dir():
+    def _find_root_dir(self):
         # 3 levels up
         comfy_root = os.path.abspath(os.path.join(__file__, "..", "..", ".."))
         print(f"comfy_root={comfy_root}")
