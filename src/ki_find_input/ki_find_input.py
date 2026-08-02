@@ -46,8 +46,7 @@ class KIFindInputNode:
     CATEGORY = "utils"
 
     def find_input(self, image_url: str, base_folder: str = "input"):
-        comfy_root = os.path.abspath(os.path.join(__file__, "..", ".."))  # two levels up
-        print(f"comfy_root={comfy_root}")
+        comfy_root = self._find_root_dir()
 
         parts = image_url.split("/")
         print(f"parts={', '.join(parts)}")
@@ -82,12 +81,19 @@ class KIFindInputNode:
         return tensor
 
     # ------------------------------------------------------------------
+    # Resolve the full path (Comfy root + folder)
+    def _find_root_dir():
+        # 3 levels up
+        comfy_root = os.path.abspath(os.path.join(__file__, "..", "..", ".."))
+        print(f"comfy_root={comfy_root}")
+
+        return comfy_root
+
+    # ------------------------------------------------------------------
     def _match_files(self, pattern: str, return_full_path: bool, base_folder: str = "input"):
-        # Resolve the full path (Comfy root + folder)
-        comfy_root = os.path.abspath(os.path.join(__file__, "..", ".."))  # two levels up
+        comfy_root = self._find_root_dir()
         target_dir = os.path.normpath(os.path.join(comfy_root, base_folder))
 
-        print(f"comfy_root={comfy_root}")
         print(f"target_dir={target_dir}")
 
         if not os.path.isdir(target_dir):
