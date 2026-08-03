@@ -256,14 +256,14 @@ class KIFindInputNode:
 
     # ------------------------------------------------------------------
     def find_input(self, image_url: str, base_folder: str = "input"):
-        result = self.find_input(image_url, base_folder)
+        result = self._find_input(image_url, base_folder)
         if result[0]:
             return (result[1],)
 
-        return self._download_file(image_url):
+        return self._download_file(image_url)
 
     # ------------------------------------------------------------------
-    def _fetch_input(self, image_url: str, base_folder: str = "input"):
+    def _find_input(self, image_url: str, base_folder: str = "input"):
         comfy_root = self._find_root_dir()
 
         parts = image_url.split("/")
