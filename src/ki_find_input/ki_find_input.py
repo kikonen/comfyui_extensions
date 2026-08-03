@@ -256,10 +256,12 @@ class KIFindInputNode:
 
     # ------------------------------------------------------------------
     def find_input(self, image_url: str, base_folder: str = "input"):
+        print(f"try: input={image_url}")
         result = self._find_input(image_url, base_folder)
         if result[0]:
             return (result[1],)
 
+        print(f"try: url={image_url}")
         return self._download_file(image_url)
 
     # ------------------------------------------------------------------
