@@ -41,8 +41,6 @@ ALLOWED_AUDIO_EXTS = {".mp3", ".wav", ".flac", ".ogg", ".m4a", ".aac"}
 
 # ------------------------------------------------------------------
 def _is_blocked_ip(hostname: str) -> bool:
-    return False
-
     try:
         infos = socket.getaddrinfo(hostname, None)
     except Exception:
@@ -256,12 +254,12 @@ class KIFindInputNode:
 
     # ------------------------------------------------------------------
     def find_input(self, image_url: str, base_folder: str = "input"):
-        print(f"try: input={image_url}")
+        print(f"local: input={image_url}")
         result = self._find_input(image_url, base_folder)
         if result[0]:
             return (result[1],)
 
-        print(f"try: url={image_url}")
+        print(f"http: url={image_url}")
         return self._download_file(image_url)
 
     # ------------------------------------------------------------------
